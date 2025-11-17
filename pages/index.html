@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chopi! </title>
+    
+    <!-- Bootstrap 5.3.6 CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/colorScheme.css">
+    
+    <style>
+      .product-card {
+        margin-bottom: 30px;
+      }
+      .product-img {
+        height: 50%;
+        width: 50%;
+        object-fit: cover;
+        border-radius: 8px;
+        align-self: center;
+      }
+      .cart-count {
+        font-size: 12px;
+        vertical-align: top;
+        margin-left: 5px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+      }
+    </style>
+  </head>
+  <body class="bg-custom-gray">
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark-gray rounded p-3">
+      <div class="container-fluid bg-custom-dark-gray rounded">
+        <a class="navbar-brand text-custom-light-brown" href="index.html">La Chopi!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav me-auto">
+            <a class="nav-item nav-link active" href="index.html">Home</a>
+            <a class="nav-item nav-link" href="laptops.html">Laptops</a>
+            <a class="nav-item nav-link" href="phones.html">Phones</a>
+            <a class="nav-item nav-link" href="studio.html">Studio</a>
+            <a class="nav-item nav-link" href="peripherals.html">Peripherals</a>
+            <a class="nav-item nav-link" href="gaming.html">Gaming</a>
+          </div>
+          <form class="d-flex my-2">
+            <input id="productSearch" class="form-control me-2" type="search" placeholder="Buscar Productos" aria-label="Search">
+          </form>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="cartBtn" class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+                <i class="fas fa-shopping-cart"></i> Carrito<span id="cartCount" class="cart-count">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>                    
+    </nav>
+    
+    <!--Products Catalog-->
+    <div id="product-section" class="container">
+      <h2 class="mb-4">Productos Catalog</h2>
+      <div id="product-list" class="row"></div>
+    </div>
+    
+    <!--Description Modal-->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-custom-cream">
+          <div class="modal-header">
+            <h5 id="productModalLabel" class="modal-title">Productos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="productModalBody" class="modal-body">
+            <div class="row">
+              <div class="col-md-5">
+                <img id="modalProductImg" src="../imgAmazonDup/missing.jpg" alt="Product Image" class="img-fluid">
+              </div>
+              <div class="col-md-7">
+                <h3 id="modalProductName">Name</h3>
+                <p><strong>Distribuidor:</strong> <span id="modalDistributor"></span></p>
+                <p><strong>Tipo:</strong> <span id="modalProductType"></span></p>
+                <p id="modalDescription"></p>
+                <p><strong>Precio:</strong> $<span id="modalPrice"></span></p>
+                <p><strong>Stock Disponible:</strong> <span id="modalStock"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="modalAddCart" type="button" class="btn bg-custom-light-brown">Añadir al carrito</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Comprando</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Cart Modal-->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-custom-cream">
+          <div class="modal-header">
+            <h5 id="cartModalLabel" class="modal-title">Your Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="cartModalBody" class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="cartTable">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Distribuidor</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <h5 class="text-end">Total: $<span id="cartTotal">0.00</span></h5>
+          </div>
+          <div class="modal-footer">
+            <button id="checkoutBtn" type="button" class="btn bg-custom-light-brown" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+              Pagar
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Comprando</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Checkout Modal-->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-custom-cream">
+          <form id="checkoutForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="checkoutModalLabel">Info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="customerName" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+              </div>
+              <div class="mb-3">
+                <label for="customerAddress" class="form-label">Dirección del envío</label>
+                <input type="text" class="form-control" id="customerAddress" placeholder="1234 Main St" required>
+              </div>
+              <div class="mb-3">
+                <label for="customerCity" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="customerCity" placeholder="City" required>
+              </div>
+              <div class="mb-3">
+                <label for="paymentInfo" class="form-label">Detalles de pago</label>
+                <input type="text" class="form-control" id="paymentInfo" placeholder="Card Number (dummy)" required>
+                <div class="form-text">
+                  Con propósitos y finalidad educativa solamente!!
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn bg-custom-light-brown">Orden de compra</button>
+            </div>
+          </form>
+          <div id="orderConfirmation" class="m-3 alert alert-success d-none">
+            Gracias por su compra! Su numero de compra es: <strong id="orderNumber"></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scripts -->
+    <!-- Include jQuery if your custom code requires it -->
+    <script src="../js/jquery.min.js"></script>
+    
+    <!-- Bootstrap 5.3.6 Bundle (includes Popper) -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/newproducts.js"></script>
+    <script src="../js/customJquery.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+
+.text-custom-light-brown { color: #d9a88f; }
+.text-custom-white { color: #fff; }
+.text-custom-dark-brown { color: #b78f6a; }
+.text-custom-cream { color: #f9eedc; }
+.text-custom-coffee { color: #a67c52; }
+.text-custom-gray { color: #808080; }
+.text-custom-dark-gray { color: #757575; }
+
+
+.bg-custom-light-brown { background-color: #d9a88f; }
+.bg-custom-white { background-color: #fff; }
+.bg-custom-dark-brown { background-color: #b78f6a; }
+.bg-custom-cream { background-color: #f9eedc; }
+.bg-custom-coffee { background-color: #a67c52; }
+.bg-custom-gray { background-color: #808080; }
+.bg-custom-dark-gray { background-color: #757575; }
+.bg-custom-light-gray { background-color: #BCB6AD;}
+
+
+.btn-custom-light-brown{
+    background-color: #d9a88f;
+    color: white;
+    border: none;
+}
+
+.btn-custom-light-brown-invert{
+    background-color: white;
+    color: #d9a88f;
+    border: none;
+}
+.btn-custom-dark-brown {
+    background-color: #b78f6a;
+    color: white;
+    border: none;
+}
+.btn-custom-coffee {
+    background-color: #a67c52;
+    color: white;
+    border: none;
+}
+  
+.custom-list-color {
+    background-color: #BCB6AD !important;  
+    border-radius: 5px;  
+}
+
+
+
+  
